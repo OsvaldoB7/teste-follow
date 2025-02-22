@@ -77,6 +77,6 @@ const deletCep = async (req, res) => {
     }
 }
 
-const health = (res) => res.json({ status: 'OK' });
+const health = (req, res) => res.json({ status: 'OK' });
 
 module.exports = { getCepInfo, getHistory, health, deletCep };

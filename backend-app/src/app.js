@@ -2,6 +2,7 @@ const rateLimit = require('express-rate-limit');
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { swaggerUi, swaggerSpec} = require('./docs/swagger');
 
 app.use(express.json());
 app.use(cors());
@@ -16,5 +17,6 @@ app.use('/cep/:cep', cepLimiter);
 
 const routes = require('./routes');
 app.use(routes);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 module.exports = app; 

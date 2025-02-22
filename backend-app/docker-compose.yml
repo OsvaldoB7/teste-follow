@@ -13,7 +13,7 @@ services:
       - DB_NAME=follow
     depends_on:
       - db
-    command: node . src/index.js
+    command: npm run start
 
   db:
     image: postgres:15

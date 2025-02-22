@@ -1,15 +1,14 @@
 const express = require('express');
-const { getCepInfo, getHistory, health } = require('../controllers/cepController');
+const { getCepInfo, getHistory, health, deletCep } = require('../controllers/cepController');
+const authRoutes = require('./authRoutes');
 
 const router = express.Router();
 
-// Endpoint para verificar a saúde da API
 router.get('/health', health);
-
-// Endpoint para consultar informações de um CEP
 router.get('/cep/:cep', getCepInfo);
-
-// Endpoint para consultar o histórico de CEPs para um usuário
 router.get('/history/:userId', getHistory);
+router.delete('/delete/:cep', deletCep);
+
+router.use('/', authRoutes)
 
 module.exports = router;

@@ -41,6 +41,26 @@ const getHistory = async (req, res) => {
     }
 };
 
-const health = (req, res) => res.json({ status: 'OK' });
+const deletCep = async (req, res) => {
+    try {
+        const { cep } = req.params;
+        const requesterUserId = req.query.userId;
+        const history = await CepHistory.findOne({ where: { cep } });
+        if (!history) {
+            return res.status(404).json({ message: 'Histórico não encontrado' });
+        }
+        if (String(history.userId) !== String(requesterUserId)) {
+            return res.status(403).json({ message: 'Você não pode deletar este cep' });
+        }
 
-module.exports = { getCepInfo, getHistory, health };
+        await history.destroy();
+        return res.json({ message: 'Histórico deletado com sucesso' });
+    } catch (error) {
+        console.error('Erro ao deletar o histórico:', error);
+        return res.status(500).json({ message: 'Erro ao deletar o histórico' });
+    }
+}
+
+const health = (res) => res.json({ status: 'OK' });
+
+module.exports = { getCepInfo, getHistory, health, deletCep };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getCepInfo, getHistory, deleteCep } from '../service/cepService';
+import DashboardHeader from '../components/DashBoardHeader';
 
 const DashboardPage = ({userId}) => {
   const [cepInput, setCepInput] = useState('');
@@ -47,9 +48,12 @@ const DashboardPage = ({userId}) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gray-900 text-white p-4 ">
+      <DashboardHeader />
+      <div className="w-full flex justify-end my-4">
+      </div>
+      
+      <div className="w-full max-w-md mx-auto mt-6">
         <div className="flex mb-4">
           <input 
             type="text"

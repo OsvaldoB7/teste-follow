@@ -43,8 +43,8 @@ const login = async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).json({ message: 'Senha incorreta.' });
         }
-
-        return res.json({ message: 'Autenticado com sucesso.', user });
+        const { id, name } = user;
+        return res.json({ message: 'Autenticado com sucesso.', user: {id, name} });
     } catch (error) {
         console.error('Erro ao autenticar usuário:', error);
         return res.status(500).json({ message: 'Erro interno ao autenticar usuário.' });

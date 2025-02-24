@@ -6,7 +6,7 @@ const { User } = require('../models');
 const getCepInfo = async (req, res) => {
     try {
         let { cep } = req.params;
-        cep = cep.trim();
+        cep = cep.trim().replace(/\D/g, '');
         const { userId } = req.query;
 
         let cepRecord = await CepAddress.findByPk(cep);
@@ -23,7 +23,7 @@ const getCepInfo = async (req, res) => {
         
         let ValidateDuplication = null;
         if (userId) {
-            const ValidateDuplication = await UserCepHistory.findOne({ where: { userId, cep } });
+            ValidateDuplication = await UserCepHistory.findOne({ where: { userId, cep } });
         } if (!ValidateDuplication) {
             await UserCepHistory.create({ userId, cep });
         }
@@ -41,7 +41,7 @@ const getHistory = async (req, res) => {
             include: [{
                 model: CepAddress,
                 as: 'cepAddresses',
-                attributes: ['cep'],
+                attributes: ['cep', 'address'],
                 through: {
                     attributes: ['createdAt'],
                 }

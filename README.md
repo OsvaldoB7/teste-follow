@@ -31,6 +31,11 @@ Backend: Porta 3000
 Frontend: Porta 3001
 Banco de Dados PostgreSQL: Porta 5432
 
+Backend estará disponivel no localhost:3000, caso queria conferir o swagger o endereço é localhost:3000/docs 
+
+frontend estara disponivel no localhost:3001
+
+
 # **Executando Localmente sem Docker**:
 Acesse ambas das pastas do projeto e rode:
 npm install

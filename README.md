@@ -1,7 +1,9 @@
 # **Teste Tecnico Follow**
 
 Este projeto é composto por duas partes principais: o Backend e o Frontend, ambos localizados nas pastas correspondentes.
+
 Backend: Localizado na pasta backend-app
+
 Frontend: Localizado na pasta frontend-app
 
 ## **Requisitos**
@@ -17,9 +19,12 @@ Docker e Docker Compose
 A aplicação backend vem configurada com um arquivo docker-compose.yml que automatiza a criação de toda a stack, incluindo a API, banco de dados (PostgreSQL) e o frontend.
 
 Para subir todos os containers, siga os passos abaixo:
+
 cd backend-app
 Execute:
+
 docker-compose up --build
+
 isso irá construir os seguintes containers : 
 
 Backend: Porta 3000

@@ -4,6 +4,7 @@ import { getCepInfo, getHistory, deleteCep } from '../service/cepService';
 import DashboardHeader from '../components/DashBoardHeader';
 import SearchForm from '../components/SearchForm';
 import HistoryList from '../components/HistoryList';
+import CepResult from '../components/CepResult';
 
 const DashboardPage = ({userId}) => {
   const [cepInput, setCepInput] = useState('');
@@ -15,8 +16,8 @@ const DashboardPage = ({userId}) => {
     e.preventDefault();
     setError(null);
     const cepSemTraco = cepInput.replace(/-/g, '');
-    if (!cepSemTraco.trim()) {
-      setError("Por favor, informe um CEP válido");
+    if (cepSemTraco.length !== 8) {
+      setError("CEP inválido: Padrão do CEP deve ser 8 digitos");
       return;
     }
     try {
@@ -64,16 +65,7 @@ const DashboardPage = ({userId}) => {
           onSubmit={handleSearchCep}
           error={error}
         />
-        {cepResult && (
-          <div className="mb-6 p-4 bg-gray-800 rounded shadow">
-            <h2 className="text-xl font-semibold mb-2">
-              Resultado do CEP: {cepResult.cep}
-            </h2>
-            <pre className="text-sm whitespace-pre-wrap">
-              {JSON.stringify(cepResult, null, 2)}
-            </pre>
-          </div>
-        )}
+        <CepResult result={cepResult} />
         <HistoryList history={history} onDelete={handleDelete} />
       </div>
     </div>

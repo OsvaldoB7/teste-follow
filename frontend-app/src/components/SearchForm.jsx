@@ -31,6 +31,8 @@ const SearchForm = ({ value, onChange, onSubmit, error }) => {
           id="search"
           value={value}
           onChange={onChange}
+          maxLength="10"
+          pattern="^\d{5}-?\d{3}$"
           className="block w-full p-4 ps-10 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500"
           placeholder="Digite o CEP..."
           required

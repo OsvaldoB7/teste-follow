@@ -46,6 +46,7 @@ const getHistory = async (req, res) => {
                     attributes: ['createdAt'],
                 }
             }],
+            order: [[{ model: CepAddress, as: 'cepAddresses' }, UserCepHistory, 'createdAt', 'DESC']]
         });
         if (!user) {
             return res.status(404).json({ message: 'Usuário não encontrado' });

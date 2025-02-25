@@ -11,15 +11,16 @@ const DashboardPage = ({userId}) => {
   const [error, setError] = useState(null);
   const [history, setHistory] = useState([]);
 
-  const handleSearchCep = async () => {
+  const handleSearchCep = async (e) => {
+    e.preventDefault();
     setError(null);
-    setCepResult(null);
-    if (!cepInput.trim()) {
+    const cepSemTraco = cepInput.replace(/-/g, '');
+    if (!cepSemTraco.trim()) {
       setError("Por favor, informe um CEP válido");
       return;
     }
     try {
-      const data = await getCepInfo(cepInput, userId);
+      const data = await getCepInfo(cepSemTraco, userId);
       setCepResult(data);
       fetchHistory();
     } catch (err) {
@@ -48,6 +49,9 @@ const DashboardPage = ({userId}) => {
   useEffect(() => {
     fetchHistory();
   }, []);
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">

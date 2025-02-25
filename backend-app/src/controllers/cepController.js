@@ -57,7 +57,7 @@ const getHistory = async (req, res) => {
     }
 };
 
-const deletCep = async (req, res) => {
+const deleteCep = async (req, res) => {
     try {
         const { cep } = req.params;
         const requesterUserId = req.query.userId;
@@ -79,4 +79,4 @@ const deletCep = async (req, res) => {
 
 const health = (req, res) => res.json({ status: 'OK' });
 
-module.exports = { getCepInfo, getHistory, health, deletCep };
+module.exports = { getCepInfo, getHistory, health, deleteCep };

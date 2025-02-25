@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+
+
 const SearchForm = ({ value, onChange, onSubmit, error }) => {
   return (
     <form onSubmit={onSubmit} className="w-full">

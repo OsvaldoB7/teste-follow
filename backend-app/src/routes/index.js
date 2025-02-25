@@ -1,5 +1,5 @@
 const express = require('express');
-const { getCepInfo, getHistory, health, deletCep } = require('../controllers/cepController');
+const { getCepInfo, getHistory, health, deleteCep } = require('../controllers/cepController');
 const authRoutes = require('./authRoutes');
 
 const router = express.Router();
@@ -86,7 +86,7 @@ router.get('/history/:userId', getHistory);
  *       404:
  *         description: CEP não encontrado no historico do user
  */
-router.delete('/delete/:cep', deletCep);
+router.delete('/delete/:cep', deleteCep);
 router.use('/', authRoutes)
 
 module.exports = router;

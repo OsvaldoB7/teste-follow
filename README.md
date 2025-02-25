@@ -7,6 +7,7 @@ Frontend: Localizado na pasta frontend-app
 ## **Requisitos**
 
 Node.js versão 22.14.0
+
 Docker e Docker Compose
 
 # **Rodando a Aplicação**

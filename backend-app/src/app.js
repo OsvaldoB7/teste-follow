@@ -10,8 +10,12 @@ app.use(cors());
 const cepLimiter = rateLimit({
     windowMs: 60 * 1000,
     max: 10,
-    message: 'Muitas requisições para o CEP, mais tarde'
-});
+    handler: (req, res) => {
+      res.status(429).json({
+        message: "Muitas requisições para o CEP. Por favor, tente novamente mais tarde!"
+      });
+    }
+  });
 
 app.use('/cep/:cep', cepLimiter);
 

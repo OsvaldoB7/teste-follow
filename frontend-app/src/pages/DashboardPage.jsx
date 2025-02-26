@@ -25,6 +25,10 @@ const DashboardPage = ({userId}) => {
       setCepResult(data);
       fetchHistory();
     } catch (err) {
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+        return;
+      }
       setError(err.message || "Erro ao buscar CEP");
     }
   };
